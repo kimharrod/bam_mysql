@@ -50,11 +50,55 @@ switch (answers.activity) {
 
 			console.table(heads, table);
 
-			main();
+		// prompt choose product and quantity for purchase
+		inquirer.prompt([
 
-		}); // end connection.query
+			{ 
+			  name: "item",
+			  message: "Enter the product ID to purchase:"
+			},
+			{
+			  name: "quantity",
+			  message: "Enter the quantity desired:"
+			}
+
+		]).then(function(answers) {
+
+			var itemIndex = answers.item - 1;
+			console.log("Product seledcted: " + res[itemIndex].product_name);
+			console.log("Quantity entered: " + answers.quantity);
+			var remainingInventory = res[itemIndex].stock_quantity - answers.quantity;
+
+			// check if there is sufficient inventory
+			if (answers.quantity <= res[itemIndex].stock_quantity) {
+				console.log("Total cost: $" + res[itemIndex].price * answers.quantity);
+
+				// update database table for remaining inventory quantity
+				connection.query("UPDATE products SET ? WHERE ?", [{
+				stock_quantity: remainingInventory
+				}, {
+				item_id: answers.item
+				}], function(error) {
+				if (error) throw err;
+
+			}); // end inventory update query
+
+			} else {
+
+				console.log("Insufficient inventory!\n");
+
+			} // end check if there is sufficient inventory
+
+
+		main();
+
+		}); // end inquirer callback
+
+	}); // end connection.query
+
 
 	break;
+
 
 	case 'Exit' :
 
