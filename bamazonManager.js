@@ -30,7 +30,46 @@ inquirer.prompt([
   	]
   }
 
+// use switch statement to choose a management activity
+]).then(function (answers) {
 
+	switch (answers.activity) {
+
+	  case 'View products for sale' :
+
+
+	  break;
+
+
+	  case 'View low inventory' :
+
+
+	  break;
+
+
+	  case 'Add to inventory' :
+
+
+	  break;
+
+
+	  case 'Add new product' :
+
+
+	  break;
+
+
+	  case 'Exit' :
+	  	connection.end();
+	  break;
+
+	  default;
+	  	return;
+
+
+    } // end switch
+
+  }); // end inquirer callback
 
 } // end main function
 
