@@ -84,9 +84,43 @@ inquirer.prompt([
 
 	  break;
 
-
+ 	  // prompt add to inventory and database update
 	  case 'Add to inventory' :
 
+
+      	inquirer.prompt([
+          {
+            name: "item",
+            message: "Enter the product ID to restock:"
+          }, 
+          {
+            name: "quantity",
+            message: "Enter the quantity to add:"
+          }
+          ]).then(function(answers) {
+
+          	// for that item, determine how many are currently in inventory
+	  		// new variable holds the updated quantity 
+
+            connection.query("SELECT * FROM products", function(err, resp) {
+              if (err) throw err;
+              var newQty = Number(answers.quantity) + Number(resp[answers.item - 1].stock_quantity);
+
+
+ 				// update the database with the new quantity
+               connection.query("UPDATE products SET ? WHERE ?", [{
+                stock_quantity: newQty
+              }, {
+                item_id: answers.item
+              }], function(err, res) {
+                 if (err) throw err;
+              });
+
+            main();
+
+           	}); // end connection.query 
+      
+        }); //end inquirer callback (promise)
 
 	  break;
 
