@@ -16,8 +16,8 @@ connection.connect(function(err) {
 function main () {
 inquirer.prompt([
   {
-  	type: 'list';
-  	name: 'activity';
+  	type: 'list',
+  	name: 'activity',
   	message: 'Select a management task',
   	choices: [
   	  new inquirer.Separator(),
@@ -37,6 +37,23 @@ inquirer.prompt([
 
 	  case 'View products for sale' :
 
+	  // query database to show all products for sale
+	  connection.query("SELECT * FROM products", function(err, res) {
+	  if (err) throw err;
+
+	  // code to format console table data
+		var heads = ['ID', 'Product', 'Price', 'Inventory'];
+		var table = [];
+		for (var i = 0; i < res.length; i++) {
+
+			table.push([res[i].item_id, res[i].product_name, res[i].price, res[i].stock_quantity]);
+		}
+
+		console.table(heads, table);
+
+		main();
+
+	  });
 
 	  break;
 
@@ -63,7 +80,7 @@ inquirer.prompt([
 	  	connection.end();
 	  break;
 
-	  default;
+	  default:
 	  	return;
 
 
