@@ -47,7 +47,8 @@ inquirer.prompt([
 		for (var i = 0; i < res.length; i++) {
 
 			table.push([res[i].item_id, res[i].product_name, res[i].price, res[i].stock_quantity]);
-		}
+		
+		} // end for loop
 
 		console.table(heads, table);
 
@@ -60,6 +61,26 @@ inquirer.prompt([
 
 	  case 'View low inventory' :
 
+	  // query database to show all products with low inventory count
+	  connection.query("SELECT * FROM products", function(err, res) {
+	  if (err) throw err;
+
+	  var heads = ['ID', 'Product', 'Price', 'Inventory'];
+	  var table = [];
+	  for (var i = 0; i < res.length; i++) {
+	  	if (res[i].stock_quantity < 5){
+
+	  	table.push([res[i].item_id, res[i].product_name, res[i].price, res[i].stock_quantity]);
+	
+	  	} // end if low inventory
+
+  	   } // end for loop
+
+	   console.table(heads, table);
+
+	   main();
+
+	   }); // end low inventory callback
 
 	  break;
 
