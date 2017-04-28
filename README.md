@@ -19,15 +19,21 @@ Once a product is selected, the user is prompted for a quantity they would like 
 
 2. If yes, the user is provided a total price for their purchase. 
 
+![Customer Purchase](http://fios.com/kim/mysql/img_49e8-39a8.png "Customer purchase interface")
+
 3. If not enough product is available, the user receives a message that there is insufficient quantity, along with the available units in inventory. 
 
 4. Providing the additional information about the available units in inventory allows the user to adjust their desired quantity in order to complete the purchase.
+
+![Customer Purchase Insufficient Inventory](http://fios.com/kim/mysql/img_2dde-2858.png "Customer message when there is insufficient quantity available")
 
 
 ### Manager Interface
 
 
 The manager interface allows for four different store management activities:
+
+![Manager Task Interface](http://fios.com/kim/mysql/img_f810-900f.png "Manager task interface")
 
 1. View products for sale - displays a table of all available products in the store's inventory
 
@@ -36,6 +42,8 @@ The manager interface allows for four different store management activities:
 3. Add to inventory - the manager can add to the quantity of any item in the store
 
 4. Add new product - the manager is prompted for the details required to add a new product to the storefront
+
+![Manager New Product Prompts](http://fios.com/kim/mysql/img_3d7c-649d.png "Manager interface to add a new product")
 
 
 ### Dependencies and Packages
