@@ -85,7 +85,7 @@ switch (answers.activity) {
 
 			} else {
 
-				console.log("Insufficient inventory! Only " + res[itemIndex].stock_quantity + " available.\n");
+				console.log("Insufficient inventory! Only " + res[itemIndex].stock_quantity + " available.\nPlease try your purchase again with a lower quantity.");
 
 			} // end check if there is sufficient inventory
 

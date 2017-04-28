@@ -87,7 +87,6 @@ inquirer.prompt([
  	  // prompt add to inventory and database update
 	  case 'Add to inventory' :
 
-
       	inquirer.prompt([
           {
             name: "item",
