@@ -19,7 +19,7 @@ Once a product is selected, the user is prompted for a quantity they would like 
 
 2. If yes, the user is provided a total price for their purchase. 
 
-![Customer Purchase](http://fios.com/kim/mysql/img_49e8-39a8.png "Customer purchase interface")
+![Customer Purchase](http://fios.com/kim/mysql/img_c11d-91fa.png "Customer purchase interface")
 
 3. If not enough product is available, the user receives a message that there is insufficient quantity, along with the available units in inventory. 
 
