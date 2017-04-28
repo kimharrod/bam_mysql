@@ -92,11 +92,11 @@ inquirer.prompt([
 	  if (err) throw err;
 
 	  // format the console table data
-		var heads = ['ID', 'Product', 'Price', 'Inventory'];
+		var heads = ['ID', 'Product', 'Department', 'Price', 'Inventory'];
 		var table = [];
 		for (var i = 0; i < res.length; i++) {
 
-			table.push([res[i].item_id, res[i].product_name, res[i].price, res[i].stock_quantity]);
+			table.push([res[i].item_id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock_quantity]);
 		
 	   } // end for loop
 
@@ -146,17 +146,22 @@ inquirer.prompt([
 
 	    inquirer.prompt([
 	    {
+	    	type: "input",
 	    	name: "name",
 	    	message: "Enter the product name:"
 	    },
 	      {
-	      	name: "dept",
-	      	message: "Enter the department:"
+	      	type: "list",
+	      	name: "dept",     	
+	      	message: "Enter the department:",
+	      	choices: ["toys", "gadgets", "crafts"] 	
         },
-          { name: "price",
+          { type: "input",
+          	name: "price",
             message: "Enter the unit price:"
       	},
       	  {
+      	  	type: "input",
       	  	name: "qty",
       	  	message: "Enter the quantity in stock:"
       	}
