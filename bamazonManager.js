@@ -124,9 +124,49 @@ inquirer.prompt([
 
 	  break;
 
-
+	  // adding a new product to the database
 	  case 'Add new product' :
 
+	    inquirer.prompt([
+	    {
+	    	name: "name",
+	    	message: "Enter the product name:"
+	    },
+	      {
+	      	name: "dept",
+	      	message: "Enter the department:"
+        },
+          { name: "price",
+            message: "Enter the unit price:"
+      	},
+      	  {
+      	  	name: "qty",
+      	  	message: "Enter the quantity in stock:"
+      	}
+      	]).then(function(answers) {
+
+  		   // query to assign the next available number to the new product
+  		   connection.query("SELECT * FROM products", function(err, res) {
+  		   		if (err) throw err;
+  		   		var prodId = res.length + 1;
+
+  		   		// insert the new product details into the database
+	   			connection.query("INSERT INTO products SET ?", {
+	   			  item_id: prodId,
+	   			  product_name: answers.name,
+	   			  department_name: answers.dept,
+	   			  price: answers.price,
+	   			  stock_quantity: answers.qty
+	   			}, function(err) {
+	   			  if (err) throw err;  
+	   			
+   				main();
+	   			
+	   			}); // end connection.query to insert table data
+
+   		   }); // end connection.query to assign product ID
+
+  		 }); // end inquirer callback
 
 	  break;
 
