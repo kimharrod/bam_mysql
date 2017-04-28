@@ -84,9 +84,25 @@ inquirer.prompt([
 
 	  break;
 
- 	  // prompt add to inventory and database update
+ 	  // adding inventory to database
 	  case 'Add to inventory' :
 
+	  // first, query database to show all products for sale
+	  connection.query("SELECT * FROM products", function(err, res) {
+	  if (err) throw err;
+
+	  // format the console table data
+		var heads = ['ID', 'Product', 'Price', 'Inventory'];
+		var table = [];
+		for (var i = 0; i < res.length; i++) {
+
+			table.push([res[i].item_id, res[i].product_name, res[i].price, res[i].stock_quantity]);
+		
+	   } // end for loop
+
+	   console.table(heads, table);
+
+	    // prompt to choose a product ID and quantity to restock 
       	inquirer.prompt([
           {
             name: "item",
@@ -120,6 +136,8 @@ inquirer.prompt([
            	}); // end connection.query 
       
         }); //end inquirer callback (promise)
+
+      }); // end display product inventory
 
 	  break;
 
