@@ -1,5 +1,5 @@
 # bam_mysql
-storefront database app
+Storefront database app
 
 
 ### Overview
