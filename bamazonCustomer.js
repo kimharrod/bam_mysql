@@ -65,7 +65,7 @@ switch (answers.activity) {
 		]).then(function(answers) {
 
 			var itemIndex = answers.item - 1;
-			console.log("Product seledcted: " + res[itemIndex].product_name);
+			console.log("Product selected: " + res[itemIndex].product_name);
 			console.log("Quantity entered: " + answers.quantity);
 			var remainingInventory = res[itemIndex].stock_quantity - answers.quantity;
 

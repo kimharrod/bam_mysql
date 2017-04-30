@@ -2,7 +2,7 @@
 storefront database app
 
 
-#### Overview
+### Overview
 
 This node app uses MySQL to create a storefront interface that runs in the terminal.
 
